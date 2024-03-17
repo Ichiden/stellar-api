@@ -1,4 +1,4 @@
-
+// import sendCodeUi from "./sendCodeUi.js";
 
 export const nodemailer_function = async(email,otp) => {
     const transporter = nodemailer.createTransport({
@@ -6,14 +6,14 @@ export const nodemailer_function = async(email,otp) => {
         port: 465,
         secure: true,
         auth: {
-          user: "denverbigayan1@gmail.com",
-          pass: "smvu kwyz byrv bcex",
+          user: "Zstellar01@gmail.com",
+          pass: "tibu ezep snnq cynr",
         },
       });
 
       async function main() {
         const info = await transporter.sendMail({
-          from: '<denverbigayan1@gmail.com>', // sender address
+          from: '<Zstellar01@gmail.com>', // sender address
           to: email, // list of receivers
           subject: "verify your email", // Subject line
           text: `${otp}`, // plain text body

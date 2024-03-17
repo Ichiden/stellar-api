@@ -3,6 +3,7 @@ import Otp from "../models/otp_model.js";
 import {nodemailer_function} from "../utils/nodemailer.js"
 import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
+import sendCodeUi from "../utils/sendCodeUi.js";
 
 export const sendOtp = async(email,res) => {
     try{
@@ -17,18 +18,18 @@ export const sendOtp = async(email,res) => {
             port: 465,
             secure: true,
             auth: {
-              user: "denverbigayan1@gmail.com",
-              pass: "smvu kwyz byrv bcex",
+              user: "Zstellar01@gmail.com",
+              pass: "tibu ezep snnq cynr",
             },
           });
 
           async function main() {
             const info = await transporter.sendMail({
-              from: '<denverbigayan1@gmail.com>', // sender address
+              from: '<Zstellar01@gmail.com>', // sender address
               to: `${email}`, // list of receivers
               subject: "verify your email", // Subject line
-              text: `${otp}`, // plain text body
-              html: `<p>${otp}</p>`, // html body
+              // text: `${otp}`, // plain text body
+              html: `${sendCodeUi(otp)}`, // html body
             });
             return res.json('sent');
           }

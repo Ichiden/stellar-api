@@ -57,7 +57,10 @@ const courseSchema = new mongoose.Schema({
         type: Number,
         default:0
     },
-    type:String,
+    type:{
+        type:String,
+        default:'Course'
+    },
     activate:{
         type:Boolean,
         required:true,
@@ -79,7 +82,8 @@ const courseSchema = new mongoose.Schema({
     date_to:Date,
     place:String,
     f2f_price:Number,
-    virtual_price:Number
+    virtual_price:Number,
+    JPSME_price:Number
 
 }, { timestamps: true })
 

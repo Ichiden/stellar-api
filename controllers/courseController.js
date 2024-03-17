@@ -232,6 +232,7 @@ export const addSubjectToCourse = asyncHandler(async(req,res,next) => {
     req.body.author_id = user._id;
     req.body.course_id = courseId;
     req.body.course_title = courseTitle;
+    
     const {title} = req.body
 
     const findTitle = await Subject.find({

@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     },
     fname: {
         type:String,
+        default:'New User'
     },
     lname: {
         type:String,

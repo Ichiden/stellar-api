@@ -97,22 +97,9 @@ const createOrder = async (data) => {
       
       // CREATE ORDER CONTROLLER
       export const createOrderCon = asyncHandler(async (req, res) => {
-        const token = req.body.product.token
-
-        const user = await protect(token)
-    
-        if(user === 'Not authorized, no token'){
-          res.status(401).json(user)
-          return
-        }
-          
-        if(user === 'Not authorized, invalid token'){
-          res.status(401).json(user)
-          return
-        }
 
         try {
-          // console.log(req.body.product)
+          console.log(req.body.product)
           
           const { jsonResponse, httpStatusCode } = await createOrder(req.body.product);
           res.status(httpStatusCode).json(jsonResponse);
@@ -125,23 +112,24 @@ const createOrder = async (data) => {
       export const captureOrderCon = asyncHandler(async (req, res) => {
         const token = req.body.token
 
-        const user = await protect(token)
+        const userx = await protect(token)
     
-        if(user === 'Not authorized, no token'){
-          res.status(401).json(user)
+        if(userx === 'Not authorized, no token'){
+          res.status(401).json(userx)
           return
         }
           
-        if(user === 'Not authorized, invalid token'){
-          res.status(401).json(user)
+        if(userx === 'Not authorized, invalid token'){
+          res.status(401).json(userx)
           return
         }
-
         try {
-        //   console.log(orderID)
+        
+        const registrationType = req.body.regType
+        console.log(registrationType)
         const orderID = req.body.orderID
         const result  = await captureOrder(orderID);
-        const userId = user._id
+        const userId = userx._id
         const time = new Date(Date.now()).getTime();
 
         const eventId_mongoose = new mongoose.Types.ObjectId(process.env.EVENT_ID)
@@ -157,7 +145,7 @@ const createOrder = async (data) => {
           const eventUpdateUser = await User.findByIdAndUpdate(
             {_id:userId},
             {
-              $push: {course_owned: {_id: eventId_mongoose,qr_code:`${userId}${time}`,reg_type: req.body.regType}},
+              $push: {course_owned: {_id: eventId_mongoose,qr_code:`${userId}${time}`,reg_type:registrationType }},
             },
             {new:true,upsert:true}
         )
@@ -170,7 +158,7 @@ const createOrder = async (data) => {
 
           const eventUpdate = await Course.findByIdAndUpdate(
             {_id: process.env.EVENT_ID},
-            {$push: {registered: {_id:userId_mongoose,qr_code:`${userId}${time}`,reg_type: req.body.regType}}},
+            {$push: {registered: {_id:userId_mongoose,qr_code:`${userId}${time}`,reg_type: registrationType}}},
             {new:true,upsert:true}
           )
 

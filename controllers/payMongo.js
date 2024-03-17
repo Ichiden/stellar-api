@@ -30,18 +30,18 @@ export const createCheckout = async(req,res,next) => {
       headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
-        authorization: 'Basic c2tfdGVzdF9IQkVyQ0N3YzRmM2kzNm1hbnFCUG5TTGc6'
+        authorization: `Basic ${process.env.PAYMONGO_KEY}`
       },
       data: {
         data: {
           attributes: {
-            send_email_receipt: false,
+            send_email_receipt: true,
             show_description: true,
             show_line_items: true,
             cancel_url: 'https://youtube.com',
             description: description,
             line_items: [
-              {currency: 'PHP', amount:price, description: 'THIS IS A SAMPLE DESC', name: 'Denver', quantity: 1}
+              {currency: 'PHP', amount:price, description: `10th PSME LRC Conference 2024`, name: `10th PSME LRC 2024 registration - ${req.body.regType}`, quantity: 1}
             ],
             payment_method_types: ["gcash","paymaya","card","billease","dob","dob_ubp"],
             success_url: process.env.MONGOPAY_SUCCESS_URL

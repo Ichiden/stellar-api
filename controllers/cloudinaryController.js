@@ -44,7 +44,7 @@ export const UploadCourseImage = asyncHandler(async(req,res,next) => {
     { 
     public_id: publicId,
     resource_type:"image",
-    upload_preset:'samsan'
+    upload_preset:`${process.env.PRESET}`
     }, 
     function(error, result) {
         res.json(result)
@@ -92,7 +92,7 @@ export const UploadCourseVideo = asyncHandler(async(req,res,next) => {
     { 
     public_id: publicId,
     resource_type:"video",
-    upload_preset:'samsan'
+    upload_preset:`${process.env.PRESET}`
     }, 
     function(error, result) {
         if(error){
@@ -146,7 +146,7 @@ export const UploadSubjectVideo = asyncHandler(async(req,res,next) => {
     { 
     public_id: publicId,
     resource_type:"video",
-    upload_preset:'samsan'
+    upload_preset:`${process.env.PRESET}`
     }, 
     function(error, result) {
         if(error){
@@ -190,7 +190,7 @@ export const deleteCourseVideoAndImage = asyncHandler(async(req,res,next) => {
     await asd.map(data => {
         cloudinary.uploader.destroy(`${data.url}`,{
             resource_type:`${data.type}`,
-            upload_preset:'samsan'
+            upload_preset:`${process.env.PRESET}`
         }).then(result => {
             console.log(result)
         }).catch(err => {

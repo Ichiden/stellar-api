@@ -16,7 +16,8 @@ const subjectSchema = new mongoose.Schema({
    course_title:{
       type: String,
       required: true
-   }
+   },
+   link:String
 },{timestamps : true})
 
 const Subject = mongoose.model('Subject',subjectSchema);
