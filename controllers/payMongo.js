@@ -82,7 +82,7 @@ export const retrieve = async(req,res,next) => {
       url: `https://api.paymongo.com/v1/checkout_sessions/${checkoutId}`,
       headers: {
         accept: 'application/json',
-        authorization: 'Basic c2tfdGVzdF9IQkVyQ0N3YzRmM2kzNm1hbnFCUG5TTGc6'
+        authorization: `Basic ${process.env.PAYMONGO_KEY}`
       }
     };
     
