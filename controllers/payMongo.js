@@ -6,6 +6,7 @@ export const createCheckout = async(req,res,next) => {
     const token = req.body.token
 
     console.log(token)
+    console.log({key: process.env.PAYMONGO_KEY})
 
     const user = await protect(token)
 
