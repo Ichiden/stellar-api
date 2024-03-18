@@ -5,6 +5,8 @@ import protect from '../utils/protect.js'
 export const createCheckout = async(req,res,next) => {
     const token = req.body.token
 
+    console.log(token)
+
     const user = await protect(token)
 
     if(user === 'Not authorized, no token'){
