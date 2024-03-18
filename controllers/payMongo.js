@@ -5,8 +5,6 @@ import protect from '../utils/protect.js'
 export const createCheckout = async(req,res,next) => {
     const token = req.body.token
 
-    console.log(token)
-    console.log({key: `Basic ${process.env.PAYMONGO_KEY}`})
 
     const user = await protect(token)
 
@@ -19,6 +17,10 @@ export const createCheckout = async(req,res,next) => {
       res.status(401).json(user)
       return
     }
+
+    
+    console.log(token)
+    console.log({key: `Basic ${process.env.PAYMONGO_KEY}`})
 
 
 
@@ -46,7 +48,7 @@ export const createCheckout = async(req,res,next) => {
             line_items: [
               {currency: 'PHP', amount:price, description: `10th PSME LRC Conference 2024`, name: `10th PSME LRC 2024 registration - ${req.body.regType}`, quantity: 1}
             ],
-            payment_method_types: ["gcash","paymaya","card","billease","dob","dob_ubp"],
+            payment_method_types: ["gcash"],
             success_url: process.env.MONGOPAY_SUCCESS_URL
           }
         }
