@@ -3,20 +3,20 @@ import protect from '../utils/protect.js'
 
 // CREATE CHECKOUT SESSION
 export const createCheckout = async(req,res,next) => {
-    const token = req.body.token
+    // const token = req.body.token
 
 
-    const user = await protect(token)
+    // const user = await protect(token)
 
-    if(user === 'Not authorized, no token'){
-      res.status(401).json(user)
-      return
-    }
+    // if(user === 'Not authorized, no token'){
+    //   res.status(401).json(user)
+    //   return
+    // }
       
-    if(user === 'Not authorized, invalid token'){
-      res.status(401).json(user)
-      return
-    }
+    // if(user === 'Not authorized, invalid token'){
+    //   res.status(401).json(user)
+    //   return
+    // }
 
     
     console.log(token)
@@ -61,6 +61,7 @@ export const createCheckout = async(req,res,next) => {
         return res.status(200).json(response.data.data)
       })
       .catch(function (error) {
+          res.status(404).json(error)
         console.error('SOMETHING WENT WRONG');
     });
 }
