@@ -19,8 +19,8 @@ export const createCheckout = async(req,res,next) => {
     // }
 
     
-    console.log(token)
-    console.log({key: `Basic ${process.env.PAYMONGO_KEY}`})
+    // console.log(token)
+    // console.log({key: `Basic ${process.env.PAYMONGO_KEY}`})
 
 
 
