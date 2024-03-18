@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(cors({
-    origin:"https://stellar-gsfc.onrender.com",
+    origin:["https://stellar-gsfc.onrender.com","https://api.paymongo.com"],
     credentials:true
 }));
 
